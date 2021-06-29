@@ -194,18 +194,17 @@ $(document).ready(async function () {
       handleSelectDropdown(e)
     });
   }
-
+  const config = {
+    containerId: Config.scannerContainerId(),
+    acceptedAngleScore: 60,
+    acceptedSizeScore: 60,
+    autoCaptureSensitivity: 0.66,
+    autoCaptureEnabled: true,
+    ignoreBadAspectRatio: false,
+    onDocumentDetected: onDocumentDetected,
+    onError: onScannerError
+  };
   if(removeBg === "True") {
-    const config = {
-      containerId: Config.scannerContainerId(),
-      acceptedAngleScore: 60,
-      acceptedSizeScore: 60,
-      autoCaptureSensitivity: 0.66,
-      autoCaptureEnabled: true,
-      ignoreBadAspectRatio: false,
-      onDocumentDetected: onDocumentDetected,
-      onError: onScannerError
-    };
     documentScanner = await scanbotSDK.createDocumentScanner(config);
     documentScanner.enableAutoCapture();
   }
