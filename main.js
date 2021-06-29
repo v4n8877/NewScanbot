@@ -571,7 +571,7 @@ $(document).ready(async function () {
     setDefault();
   });
 
- function setDefault() {
+ async function setDefault() {
     arrayImages = [];
     questions = [];
     examCode= '';
