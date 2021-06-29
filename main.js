@@ -5,13 +5,13 @@ var cheatTimer = null;
 
 $(document).ready(async function () {
   //DEFINE ENVS
-  // var makingUrl = "https://dev-edu-auto-marking.bappartners.com/marking";
-  // var scoringUrl = "https://dev-edu-gakutore-api.bappartners.com/scoring";
-  // var gakutoreUrl = "https://dev-edu-gakutore-web.bappartners.com";
+  var makingUrl = "https://stg-edu-auto-marking.bappartners.com/marking";
+  var scoringUrl = "https://stg-edu-gakutore-api.bappartners.com/scoring";
+  var gakutoreUrl = "https://stg-edu-gakutore-web.bappartners.com";
 
-  var makingUrl = "CI_API_URL";
-  var scoringUrl = "CI_API_SCORING";
-  var gakutoreUrl = "CI_GAKUTORE_URL";
+  // var makingUrl = "CI_API_URL";
+  // var scoringUrl = "CI_API_SCORING";
+  // var gakutoreUrl = "CI_GAKUTORE_URL";
   const getVariable = localStorage.getItem('REMOVE_FLAG');
   var removeBg = getVariable ? getVariable : 'True';
 
