@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <title>Capture picture from your webcam</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>
+</head>
+
+<body>
+    <div class="main__page">
+        <div id="camera" style="height:auto;width:auto; text-align:left;"></div>
+        <input type="button" value="Take a Snap" id="btPic" onclick="takeSnapShot()" />
+        <p id="snapShot"></p>
+    </div>
+</body>
+
+<script>
+    // CAMERA SETTINGS.
+    Webcam.set({
+        width: 3024,
+        height: 2268,
+        image_format: 'jpg',
+        jpeg_quality: 100
+    });
+    Webcam.attach('#camera');
+
+    // SHOW THE SNAPSHOT.
+    takeSnapShot = function () {
+        Webcam.snap(function (data_uri) {
+            document.getElementById('snapShot').innerHTML ='<img src="' + data_uri + '" />';
+        });
+    }
+</script>
+</html>
+<style>
+    .main__page { text-align: center; }
+    p#snapShot { zoom: 0.3; }
+    #camera { zoom: 0.3; margin: 0 auto; }
+    input#btPic { margin: 2rem 0; display: inline-block; font-weight: 400; text-align: center; white-space: nowrap; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; border: 1px solid transparent; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; border-radius: .25rem; transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out; color: #007bff; background-color: transparent; background-image: none; border-color: #007bff; }
+</style>
