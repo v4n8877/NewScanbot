@@ -336,8 +336,13 @@ $(document).ready(async function () {
 
   $(".close").on('click', async function (e) {
     e.preventDefault();
-    $("#video").removeClass("hidden__content");
-    $("#scanbot-camera-container").removeClass("hidden__content");
+    if(removeBg === "True") {
+      $("#video").addClass("hidden__content");
+      $("#scanbot-camera-container").removeClass("hidden__content");
+    } else {
+      $("#video").removeClass("hidden__content");
+      $("#scanbot-camera-container").addClass("hidden__content");
+    }
     $(".section__img").addClass("hidden__content");
     $("#myCanvas").removeClass("hidden__content");
     $('#content__img').removeAttr('style');
