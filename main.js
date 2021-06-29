@@ -379,7 +379,7 @@ $(document).ready(async function () {
        return arrayImages.splice(getIndex, 1);
       });
     } else {
-      $(".close").trigger('click');
+      $(".close").click();
     }
   });
 
