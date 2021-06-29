@@ -295,7 +295,13 @@ $(document).ready(async function () {
     $('#submit__files').removeAttr('disabled');
     $(".overlay__loading").addClass("hidden__content");
     $("#content__img--loading").addClass("hidden__content");
-    $("#scanbot-camera-container").removeClass("hidden__content");
+    if(removeBg === "True") {
+      $("#video").addClass("hidden__content");
+      $("#scanbot-camera-container").removeClass("hidden__content");
+    } else {
+      $("#video").removeClass("hidden__content");
+      $("#scanbot-camera-container").addClass("hidden__content");
+    }
     $('#snap').removeAttr('disabled');
     $(".btn__play").removeAttr('disabled');
     if(findChild.length > 0) {
