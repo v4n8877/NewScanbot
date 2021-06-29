@@ -378,6 +378,8 @@ $(document).ready(async function () {
        $('#snap').attr('disabled', false);
        return arrayImages.splice(getIndex, 1);
       });
+    } else {
+      $(".close").trigger('click');
     }
   });
 
