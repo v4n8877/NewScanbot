@@ -307,7 +307,7 @@ $(document).ready(async function () {
     if(findChild.length > 0) {
       return contentSlider.append(`
         <div class="slider__item carousel-item">
-          <img class="slider__item--img" src=${item} alt='item'index="${results.length - 1}" />
+          <img class="slider__item--img" src=${item} alt='item' />
           <button class="btn btn-danger slider__item--btn" id="btn-delete">
             <img src="./asset/images/TrashSimple.svg" alt="camera" />
           </button> 
@@ -316,7 +316,7 @@ $(document).ready(async function () {
     }
     return contentSlider.append(`
       <div class="slider__item carousel-item active">
-        <img class="slider__item--img" src=${item} alt='item' index="${results.length - 1}" />
+        <img class="slider__item--img" src=${item} alt='item' />
         <button class="btn btn-danger slider__item--btn" id="btn-delete">
           <img src="./asset/images/TrashSimple.svg" alt="camera" />
         </button> 
@@ -569,7 +569,7 @@ $(document).ready(async function () {
     setDefault();
   });
 
- async function setDefault() {
+ function setDefault() {
     arrayImages = [];
     questions = [];
     examCode= '';
