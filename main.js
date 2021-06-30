@@ -22,12 +22,12 @@ $(document).ready(async function () {
     }, 60000);
     $("#video").addClass("hidden__content");
     $("#scanbot-camera-container").removeClass("hidden__content");
-    $("#turn__scanbot span").text("Turn off scanbot");
+    $("#turn__scanbot span").text("Turn off auto scan");
     $('#snap img').attr('src', './asset/images/iconmonstr-refresh-1.png').css({'filter': 'invert(1)'});
   } else {
     $("#video").removeClass("hidden__content");
     $("#scanbot-camera-container").addClass("hidden__content");
-    $("#turn__scanbot span").text("Turn on scanbot");
+    $("#turn__scanbot span").text("Turn on auto scan");
   }
 
   var videoSelect = document.querySelector('select#listCamera');
