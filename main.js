@@ -37,7 +37,8 @@ $(document).ready(async function () {
   var context = canvas.getContext('2d');
   $("#submit__files").attr('disabled', 'disabled');
   var listDevices = [];
-  let zoom = 1;
+  var zoom = 1;
+  var idImg = null;
 
   $("#turn__scanbot").on('click', function(e) {
     e.preventDefault();
@@ -330,6 +331,7 @@ $(document).ready(async function () {
     if(removeBg === "True") {
       documentScanner.dispose();
     }
+    idImg = $(this).parent().index();
     $("#video").addClass("hidden__content");
     $("#scanbot-camera-container").addClass("hidden__content");
     const { src } = e.target;
@@ -361,27 +363,39 @@ $(document).ready(async function () {
   })
 
   // DELETE PHOTOS
-  $('.slider__carousel').on("mouseenter", ".slider__item", async function(e) {
-    e.preventDefault();
-    const getIndex = await $(this).index();
+  $('.slider__carousel').delegate(".slider__item--btn", 'click' , function(event) {
+    event.preventDefault();
+    let getIndex = $(this).parent().index();
     if(arrayImages.length > 0) {
-      $(this).find(".slider__item--btn").click(function(event) {
-        event.preventDefault();
-        if(arrayImages.length >= 1) {
-          if(getIndex === 0) {
-            $(".slider__item:eq(1)").addClass("active");
-            $(".slider__item:eq(0)").remove();
-          } else {
-            $(`.slider__item:eq(${getIndex})`).remove();
-          }
-        }
-       $('#snap').attr('disabled', false);
-       return arrayImages.splice(getIndex, 1);
-      });
-    } else {
-      $(".close").click();
+      removeSlider(getIndex);
     }
   });
+
+  function removeSlider(idx) {
+    if(arrayImages.length >= 1) {
+      if(idx === 0) {
+        $(".slider__item:eq(1)").addClass("active");
+        $(".slider__item:eq(0)").remove();
+      } else {
+        $(`.slider__item:eq(${idx})`).remove();
+      }
+    }
+    $('#snap').attr('disabled', false);
+    arrayImages.splice(idx, 1);
+    checkArray(arrayImages, idx);
+  }
+
+  async function checkArray(arrayImages, idx) {
+    if(arrayImages.length < 1) {
+      $(".close").click();
+      idImg = null;
+    }
+    if(idImg !== null && idImg === idx && arrayImages.length > 0) {
+      const getSrc = await $(`.slider__item:eq(${0})`).find('img').attr('src');
+      $("#content__img").attr("src", getSrc);
+      idImg = 0;
+    }
+  }
 
   // ZOOM IN_OUT
   $('.zoom__in').on('click', function() {
