@@ -23,7 +23,7 @@ $(document).ready(async function () {
     $("#video").addClass("hidden__content");
     $("#scanbot-camera-container").removeClass("hidden__content");
     $("#turn__scanbot span").text("Turn off scanbot");
-    $('#snap img').attr('src', './asset/images/iconmonstr-refresh-1.svg').css({'filter': 'invert(1)'})
+    $('#snap img').attr('src', './asset/images/iconmonstr-refresh-1.png');
   } else {
     $("#video").removeClass("hidden__content");
     $("#scanbot-camera-container").addClass("hidden__content");
