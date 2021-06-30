@@ -343,19 +343,21 @@ $(document).ready(async function () {
 
   $(".close").on('click', async function (e) {
     e.preventDefault();
-    if(removeBg === "True") {
-      $("#video").addClass("hidden__content");
-      $("#scanbot-camera-container").removeClass("hidden__content");
-    } else {
-      $("#video").removeClass("hidden__content");
-      $("#scanbot-camera-container").addClass("hidden__content");
-    }
     $(".section__img").addClass("hidden__content");
     $("#myCanvas").removeClass("hidden__content");
     $('#content__img').removeAttr('style');
     $("#content__img").attr("src", '');
     if(removeBg === "True") {
+      $("#content__img--loading").removeClass("hidden__content");
+      $(".overlay__loading").removeClass("hidden__content");
       documentScanner = await scanbotSDK.createDocumentScanner(config);
+      $("#content__img--loading").addClass("hidden__content");
+      $(".overlay__loading").addClass("hidden__content");
+      $("#video").addClass("hidden__content");
+      $("#scanbot-camera-container").removeClass("hidden__content");
+    } else {
+      $("#video").removeClass("hidden__content");
+      $("#scanbot-camera-container").addClass("hidden__content");
     }
     if (arrayImages.length < 3) {
       $('#snap').attr('disabled', false);
@@ -386,7 +388,7 @@ $(document).ready(async function () {
   }
 
   async function checkArray(arrayImages, idx) {
-    if(arrayImages.length < 1) {
+    if(idImg !== null && arrayImages.length < 1) {
       $(".close").click();
       idImg = null;
     }
@@ -603,14 +605,22 @@ $(document).ready(async function () {
     $(".left__header").removeClass("hidden__content");
     $(".btn__pause").addClass("hidden__content");
     $(".btn__play").removeClass("hidden__content");
-    $("#scanbot-camera-container").removeClass("hidden__content");
     $(".slider__arrow").addClass("hidden__content")
     $("#myCanvas").removeClass("hidden__content");
     $(".section__img").addClass("hidden__content");
     $("#content__img").attr("src", "");
     if(removeBg === "True") {
+      $("#content__img--loading").removeClass("hidden__content");
+      $(".overlay__loading").removeClass("hidden__content");
       documentScanner = await scanbotSDK.createDocumentScanner(config);
+      $("#video").addClass("hidden__content");
+      $("#scanbot-camera-container").removeClass("hidden__content");
+      $("#content__img--loading").addClass("hidden__content");
+      $(".overlay__loading").addClass("hidden__content");
       documentScanner.enableAutoCapture();
+    } else {
+      $("#video").removeClass("hidden__content");
+      $("#scanbot-camera-container").addClass("hidden__content");
     }
   }
 });
